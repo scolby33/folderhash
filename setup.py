@@ -23,7 +23,10 @@ CLASSIFIERS = [
     'Programming Language :: Python :: 3.6',
     'Topic :: Utilities'
 ]
-INSTALL_REQUIRES = []
+INSTALL_REQUIRES = [
+    'curio',
+    'docopt'
+]
 EXTRAS_REQUIRE = {}
 TESTS_REQUIRE = []
 ENTRY_POINTS = {
