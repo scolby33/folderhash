@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Compare folder contents via hash.
-Call with two directory names to hash the contents of each and print information about their differencies.
+File I/O and hashing are done in threads to take advantage of possible speedups.
+Call with two directory names to hash the contents of each and print information about their differences.
 Call with one directory name to output hashes of each file within.
 Call with `-a` and `-b` to input files containing output as from above to compare.
 
