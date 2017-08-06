@@ -5,17 +5,19 @@ Call with one directory name to output hashes of each file within.
 Call with `-a` and `-b` to input files containing output as from above to compare.
 
 Usage:
-    foldercompare [-v] [-s <hash_spec>] <dir_a> [<dir_b>]
+    foldercompare [-v] [-s <hash_spec>] [-j <num_workers>] <dir_a> [<dir_b>]
     foldercompare -a <a_file> -b <b_file>
 
 Options:
-    -v              Verbose output
-    -s <hash_spec>  Set the hashing algorithm. Use a name from `hashlib`, e.g. 'md5'. [default: sha3_256]
-    -a <a_file>     The first file of hashes to compare
-    -b <b_file>     The second file of hashes to compare
+    -v                  Verbose output
+    -s <hash_spec>      Set the hashing algorithm. Use a name from `hashlib`, e.g. 'md5'. [default: sha3_256]
+    -j <num_workers>    The number asynchronous hashing workers to spawn. Defaults to the number of CPU's + 1
+    -a <a_file>         The first file of hashes to compare
+    -b <b_file>         The second file of hashes to compare
 """
 import hashlib
 import logging
+import multiprocessing
 import os
 import sys
 import time
@@ -75,7 +77,7 @@ def compare_hashes(a, b):
     return bad, a_missing, b_missing
 
 
-async def amain(hash_func, a, b=None):
+async def amain(hash_func, a, b=None, num_workers=None):
     work_queue = curio.Queue()
     output_lock = curio.Lock()
 
@@ -84,7 +86,12 @@ async def amain(hash_func, a, b=None):
         output['b'] = {}
 
     hashers = curio.TaskGroup(name='hashers')
-    for _ in range(8):
+    if not num_workers:
+        try:
+            num_workers = multiprocessing.cpu_count() + 1
+        except NotImplementedError:
+            num_workers = 2
+    for _ in range(num_workers):
         await hashers.spawn(hash_file_worker, work_queue, output, output_lock,
                             hash_func)
 
@@ -124,7 +131,8 @@ def main():
                 f'Hash function {args["-s"]} is not available. Defaulting to sha3_256'
             )
 
-        output = curio.run(amain, hash_func, args['<dir_a>'], args['<dir_b>'])
+        output = curio.run(amain, hash_func, args['<dir_a>'], args['<dir_b>'],
+                           int(args['-j']))
 
         if not args['<dir_b>']:  # only one input folder, so just print the hashes and exit
             for k, v in sorted(output['a'].items()):
