@@ -119,9 +119,9 @@ def main():
         try:
             hash_func = getattr(hashlib, args['-s'])
         except AttributeError:
-            hash_func = hashlib.md5
+            hash_func = hashlib.sha3_256
             logger.warn(
-                f'Hash function {args["-s"]} is not available. Defaulting to md5'
+                f'Hash function {args["-s"]} is not available. Defaulting to sha3_256'
             )
 
         output = curio.run(amain, hash_func, args['<dir_a>'], args['<dir_b>'])
