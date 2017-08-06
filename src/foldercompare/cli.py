@@ -109,8 +109,12 @@ def main():
         logging.basicConfig(level=logging.INFO, format=log_format)
 
     if not args['-a'] and not args['-b']:  # we're being asked to hash some files
-        if not os.path.isdir(args['<dir_a>']) or not os.path.isdir(args['<dir_b>']):
-            logger.error('Must provide two directories to hash. Were you looking for the `-a` and `-b` options?')
+        if (not os.path.isdir(args['<dir_a>'])) or (
+                args['<dir_b>'] and not os.path.isdir(args['<dir_b>'])
+        ):  # use short-circuit of the and to only call os.isdir if "dir_b" was actually provided
+            logger.error(
+                'Must provide two directories to hash. Were you looking for the `-a` and `-b` options?'
+            )
             return 1
         try:
             hash_func = getattr(hashlib, args['-s'])
