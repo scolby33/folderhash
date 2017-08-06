@@ -38,24 +38,30 @@ def walk_all_files(path):
 async def hash_file_worker(work_queue, output, output_lock, hash_func):
     while True:
         dir_id, path = await work_queue.get()
-        digest = await hash_file(path, hash_func)
+        digest = await curio.workers.run_in_thread(hash_file, path, hash_func)
         async with output_lock:
             output[dir_id][path] = digest
         await work_queue.task_done()
 
 
-async def hash_file(path, hash_func):
+def hash_file(path, hash_func):
     start = time.time()
     hasher = hash_func()
-    async with curio.file.aopen(path, 'rb') as f:
-        buf = await f.read(BLOCKSIZE)
+    # async with curio.file.aopen(path, 'rb') as f:
+    #     buf = await f.read(BLOCKSIZE)
+    #     while len(buf) > 0:
+    #         hasher.update(buf)
+    #         buf = await f.read(BLOCKSIZE)
+    with open(path, 'rb') as f:
+        buf = f.read(BLOCKSIZE)
         while len(buf) > 0:
             hasher.update(buf)
-            buf = await f.read(BLOCKSIZE)
+            buf = f.read(BLOCKSIZE)
 
+    digest = hasher.hexdigest()
     end = time.time()
     logger.debug(f'{end - start:.9f}s {path}')
-    return hasher.hexdigest()
+    return digest
 
 
 def normalize_paths(input):
