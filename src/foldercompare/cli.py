@@ -139,7 +139,7 @@ def main():
     b_prefix, b_normalized = normalize_paths(output['b'])
     bad, a_missing, b_missing = compare_hashes(a_normalized, b_normalized)
 
-    dirty = False
+    dirty = False  # this feels hacky, but I can't think of a better way...
     for path in sorted(bad):
         dirty = True
         print(f'{a_normalized[path]} {os.path.join(a_prefix, path)}')
@@ -156,7 +156,7 @@ def main():
         print(f'{b_normalized[path]} {os.path.join(b_prefix, path)}')
         print()
 
-    if dirty:
+    if dirty:  # We had something to report--missing files or bad hashes--so give a bad return status to the caller.
         return 1
 
 
