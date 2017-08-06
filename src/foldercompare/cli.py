@@ -139,7 +139,7 @@ def main():
             )
 
         output = curio.run(amain, hash_func, args['<dir_a>'], args['<dir_b>'],
-                           int(args['-j']))
+                           int(args['-j']) if args['-j'] else None)
 
         if not args['<dir_b>']:  # only one input folder, so just print the hashes and exit
             for k, v in sorted(output['a'].items()):
