@@ -147,10 +147,10 @@ def main():
             return
     else:  # we're given some file hashes already so just compare them
         output = {}
-        with open(args['<a_file>'], 'r') as f:
+        with open(args['-a'], 'r') as f:
             output['a'] = dict(
                 reversed(line.strip().split(None, 1)) for line in f)
-        with open(args['<b_file>'], 'r') as f:
+        with open(args['-b'], 'r') as f:
             output['b'] = dict(
                 reversed(line.strip().split(None, 1)) for line in f)
 
