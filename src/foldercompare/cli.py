@@ -20,11 +20,25 @@ import hashlib
 import logging
 import multiprocessing
 import os
+import platform
 import sys
 import time
 
 import curio
 from docopt import docopt
+
+# workaround for https://github.com/dabeaz/curio/issues/75 which, despite being closed, still affects me on Windows...
+if platform.system() == 'Windows':
+    def create_windows_selector():
+        import selectors
+        import socket
+        dummy_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        selector = selectors.DefaultSelector()
+        selector.register(dummy_socket, selectors.EVENT_READ)
+        return selector
+    SELECTOR = create_windows_selector()
+else:
+    SELECTOR = None
 
 BLOCKSIZE = 2**16
 logger = logging.getLogger(__name__)
@@ -139,7 +153,7 @@ def main():
             )
 
         output = curio.run(amain, hash_func, args['<dir_a>'], args['<dir_b>'],
-                           int(args['-j']) if args['-j'] else None)
+                           int(args['-j']) if args['-j'] else None, selector=SELECTOR)
 
         if not args['<dir_b>']:  # only one input folder, so just print the hashes and exit
             for k, v in sorted(output['a'].items()):
