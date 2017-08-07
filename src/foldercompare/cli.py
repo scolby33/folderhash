@@ -45,7 +45,7 @@ logger = logging.getLogger(__name__)
 
 
 def walk_all_files(path):
-    for dirpath, _, filenames in os.walk(os.path.expanduser(path)):
+    for dirpath, _, filenames in os.walk(os.path.abspath(os.path.expanduser(path))):
         for filename in filenames:
             yield os.path.join(dirpath, filename)
 
