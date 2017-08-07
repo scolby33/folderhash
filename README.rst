@@ -11,7 +11,7 @@ At the moment, installation must be performed via GitHub:
 
 .. code-block:: sh
 
-    $ pip install git+git://github.com/scolby33/foldercompare.git#egg=foldercompare-git
+    $ pip install git+git://github.com/scolby33/foldercompare.git
     
 :code:`foldercompare` supports only Python 3.6.
 
