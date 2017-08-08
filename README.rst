@@ -1,9 +1,16 @@
-foldercompare
-=============
+foldercompare |python_versions| |license| |library|
+===================================================
 Compare folder contents via hash.
+File I/O and hashing are done in threads to make the comparison as speedy as possible!
 
-.. image:: https://img.shields.io/badge/python-3.6-blue.svg
-    :alt: Python 3.6
+.. |python_versions| image:: https://img.shields.io/badge/python-3.6-blue.svg?style=flat-square
+    :alt: Supports Python 3.6
+.. |license| image:: https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square
+    :alt: MIT License
+.. |library| image:: https://img.shields.io/badge/async-curio-blue.svg?style=flat-square
+    :target: https://curio.readthedocs.io/
+    :alt: Uses the Curio async library
+
     
 Installation
 ------------
