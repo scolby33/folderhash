@@ -175,7 +175,11 @@ def main():
                 return 1
 
     a_prefix, a_normalized = normalize_paths(output['a'])
+    a_prefix = args['<dir_a>'] if args['<dir_a>'] else a_prefix
+
     b_prefix, b_normalized = normalize_paths(output['b'])
+    b_prefix = args['<dir_b>'] if args['<dir_b>'] else b_prefix
+
     bad, a_missing, b_missing = compare_hashes(a_normalized, b_normalized)
 
     dirty = False  # this feels hacky, but I can't think of a better way...
