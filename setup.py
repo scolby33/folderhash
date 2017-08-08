@@ -9,7 +9,7 @@ import re
 
 PACKAGES = setuptools.find_packages(where='src')
 META_PATH = os.path.join('src', 'folderhash', '__init__.py')
-KEYWORDS = []
+KEYWORDS = ['filesystem', 'diff', 'hash']
 # complete classifier list: http://pypi.python.org/pypi?%3Aaction=list_classifiers
 CLASSIFIERS = [
     'Development Status :: 5 - Production/Stable',
