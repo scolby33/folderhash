@@ -6,8 +6,8 @@ Call with one directory name to output hashes of each file within.
 Call with `-a` and `-b` to input files containing output as from above to compare.
 
 Usage:
-    foldercompare [-v] [-s <hash_spec>] [-j <num_workers>] <dir_a> [<dir_b>]
-    foldercompare -a <a_file> -b <b_file>
+    folderhash [-v] [-s <hash_spec>] [-j <num_workers>] <dir_a> [<dir_b>]
+    folderhash -a <a_file> -b <b_file>
 
 Options:
     -v                  Verbose output

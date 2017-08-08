@@ -1,10 +1,10 @@
 """Compare folder contents via hash."""
 __version__ = '0.1.0-dev'
 
-__title__ = 'foldercompare'
+__title__ = 'folderhash'
 # keep the __description__ synchronized with the module docstring
 __description__ = 'Compare folder contents via hash.'
-__url__ = 'https://github.com/scolby33/foldercompare'
+__url__ = 'https://github.com/scolby33/folderhash'
 
 __author__ = 'Scott Colby'
 __email__ = 'scolby33@gmail.com'

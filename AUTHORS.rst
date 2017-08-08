@@ -1,7 +1,7 @@
 Authors
 =======
 
-:code:`foldercompare` is maintained by Scott Colby <scolby33@gmail.com>
+:code:`folderhash` is maintained by Scott Colby <scolby33@gmail.com>
 
 Contributors
 ------------

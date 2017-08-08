@@ -1,4 +1,4 @@
-"""Setup module for the foldercompare package"""
+"""Setup module for the folderhash package"""
 
 import setuptools
 import codecs  # To use a consistent encoding
@@ -8,7 +8,7 @@ import re
 #################################################################
 
 PACKAGES = setuptools.find_packages(where='src')
-META_PATH = os.path.join('src', 'foldercompare', '__init__.py')
+META_PATH = os.path.join('src', 'folderhash', '__init__.py')
 KEYWORDS = []
 # complete classifier list: http://pypi.python.org/pypi?%3Aaction=list_classifiers
 CLASSIFIERS = [
@@ -30,7 +30,7 @@ INSTALL_REQUIRES = [
 EXTRAS_REQUIRE = {}
 TESTS_REQUIRE = []
 ENTRY_POINTS = {
-    'console_scripts': ['foldercompare=foldercompare:cli']
+    'console_scripts': ['folderhash=folderhash:cli']
 }
 
 #################################################################
