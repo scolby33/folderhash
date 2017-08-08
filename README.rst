@@ -1,9 +1,11 @@
 foldercompare |python_versions| |license| |library|
 ===================================================
 Compare folder contents via hash.
-File I/O and hashing are done in threads to make the comparison as speedy as possible!
+File I/O and hashing are done in threads using the `Curio <https://curio.readthedocs.io>`_ library to make the comparison as speedy as possible!
 
-.. |python_versions| image:: https://img.shields.io/badge/python-3.6-blue.svg?style=flat-square
+I use :code:`foldercompare` for extra assurance that large or important file copies have been performed accurately.
+
+.. |python_versions| image:: https://img.shields.io/badge/python->%3D3.6-blue.svg?style=flat-square
     :alt: Supports Python 3.6
 .. |license| image:: https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square
     :alt: MIT License
@@ -20,7 +22,7 @@ At the moment, installation must be performed via GitHub:
 
     $ pip install git+git://github.com/scolby33/foldercompare.git
     
-:code:`foldercompare` supports only Python 3.6.
+:code:`foldercompare` supports only Python 3.6 or later.
 
 Demo
 ----
