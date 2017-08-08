@@ -21,7 +21,7 @@ Installation from PyPI should be easy:
 .. code-block:: sh
 
     $ pip install folderhash
-    
+
 :code:`folderhash` supports only Python 3.6 or later.
 
 Demo
