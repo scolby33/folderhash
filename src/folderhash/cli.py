@@ -148,7 +148,7 @@ def main():
             hash_func = getattr(hashlib, args['-s'])
         except AttributeError:
             hash_func = hashlib.sha3_256
-            logger.warn(
+            logger.warning(
                 f'Hash function {args["-s"]} is not available. Defaulting to sha3_256'
             )
 
