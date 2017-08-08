@@ -79,10 +79,10 @@ def hash_file(path, hash_func):
     return digest
 
 
-def normalize_paths(input):
-    prefix = os.path.commonpath(input.keys())
+def normalize_paths(hashes_dict):
+    prefix = os.path.commonpath(hashes_dict.keys())
     prefix_len = len(prefix) + 1
-    normalized = {k[prefix_len:]: v for k, v in input.items()}
+    normalized = {k[prefix_len:]: v for k, v in hashes_dict.items()}
     return prefix, normalized
 
 
