@@ -89,6 +89,24 @@ Demo
     9fb5d41e2533b73381bdde8e3ac2d60a6a18467674771187595d83e9bfa30909 /tmp/demo/a/b
     a7ffc6f8bf1ed76651c14756a061d662f580ff4de43b49fa82d80a4b80f8434a /tmp/demo/a/c
 
+Changelog
+---------
+
+Changes as of 8 August 2017
+
+1.0.1 <8 August 2017>
+^^^^^^^^^^^^^^^^^^^^^
+
+- Some readme fixes
+- Change the PyPI development status classifier from Beta to Production/Stable
+- Show paths relative to the input argument instead of absolute paths when producing output. I think it's easier to understand this way.
+- Add some error checking for input of empty hash files
+
+1.0.0 <7 August 2017>
+^^^^^^^^^^^^^^^^^^^^^
+
+- Initial stable release to PyPI!
+
 Contributing
 ------------
 There are many ways to contribute to an open-source project, but the two most common are reporting bugs and contributing code.
