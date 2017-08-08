@@ -19,6 +19,7 @@ Demo
 ----
 
 .. code-block:: console
+
     $ mkdir -p /tmp/demo/a /tmp/demo/b  # just some setup
     $ cd /tmp/demo
     $ touch a/a a/b a/c b/a b/b b/d
