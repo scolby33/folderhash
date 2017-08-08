@@ -35,41 +35,42 @@ Demo
     $ echo "DIFFERENT CONTENT" >> a/b
     
     $ folderhash a b  # the simplest case--compare two folders
-    9fb5d41e2533b73381bdde8e3ac2d60a6a18467674771187595d83e9bfa30909 /tmp/demo/a/b
-    a7ffc6f8bf1ed76651c14756a061d662f580ff4de43b49fa82d80a4b80f8434a /tmp/demo/b/b
+    9fb5d41e2533b73381bdde8e3ac2d60a6a18467674771187595d83e9bfa30909 a/b
+    a7ffc6f8bf1ed76651c14756a061d662f580ff4de43b49fa82d80a4b80f8434a b/b
 
-    a7ffc6f8bf1ed76651c14756a061d662f580ff4de43b49fa82d80a4b80f8434a /tmp/demo/a/c
-    ABSENT /tmp/demo/b/c
+    a7ffc6f8bf1ed76651c14756a061d662f580ff4de43b49fa82d80a4b80f8434a a/c
+    ABSENT b/c
 
-    ABSENT /tmp/demo/a/d
-    a7ffc6f8bf1ed76651c14756a061d662f580ff4de43b49fa82d80a4b80f8434a /tmp/demo/b/d
+    ABSENT a/d
+    a7ffc6f8bf1ed76651c14756a061d662f580ff4de43b49fa82d80a4b80f8434a b/d
 
     $ # you can change the hash algorithm!
     $ # all of the algorithms in your Python's `hashlib` are available
     $ # default is sha3_256
     $ folderhash -s md5 a b  
-    128edd12d0b04e23d10c4747d0da2c03 /tmp/demo/a/b
-    d41d8cd98f00b204e9800998ecf8427e /tmp/demo/b/b
+    128edd12d0b04e23d10c4747d0da2c03 a/b
+    d41d8cd98f00b204e9800998ecf8427e b/b
 
-    d41d8cd98f00b204e9800998ecf8427e /tmp/demo/a/c
-    ABSENT /tmp/demo/b/c
+    d41d8cd98f00b204e9800998ecf8427e a/c
+    ABSENT b/c
 
-    ABSENT /tmp/demo/a/d
-    d41d8cd98f00b204e9800998ecf8427e /tmp/demo/b/d
+    ABSENT a/d
+    d41d8cd98f00b204e9800998ecf8427e b/d
 
     $ # it works with relative paths, too
     $ cd a
     $ folderhash . ../b
-    9fb5d41e2533b73381bdde8e3ac2d60a6a18467674771187595d83e9bfa30909 /tmp/demo/a/b
-    a7ffc6f8bf1ed76651c14756a061d662f580ff4de43b49fa82d80a4b80f8434a /tmp/demo/b/b
+    9fb5d41e2533b73381bdde8e3ac2d60a6a18467674771187595d83e9bfa30909 ./b
+    a7ffc6f8bf1ed76651c14756a061d662f580ff4de43b49fa82d80a4b80f8434a ../b/b
 
-    a7ffc6f8bf1ed76651c14756a061d662f580ff4de43b49fa82d80a4b80f8434a /tmp/demo/a/c
-    ABSENT /tmp/demo/b/c
+    a7ffc6f8bf1ed76651c14756a061d662f580ff4de43b49fa82d80a4b80f8434a ./c
+    ABSENT ../b/c
 
-    ABSENT /tmp/demo/a/d
-    a7ffc6f8bf1ed76651c14756a061d662f580ff4de43b49fa82d80a4b80f8434a /tmp/demo/b/d
+    ABSENT ./d
+    a7ffc6f8bf1ed76651c14756a061d662f580ff4de43b49fa82d80a4b80f8434a ../b/d
 
     $ # you can do the hashing separately and compare at a later time
+    $ # absolute paths are always shown here
     $ cd ..
     $ folderhash a > a.txt
     $ folderhash b > b.txt
