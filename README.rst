@@ -16,11 +16,11 @@ I use :code:`folderhash` for extra assurance that large or important file copies
     
 Installation
 ------------
-At the moment, installation must be performed via GitHub:
+Installation from PyPI should be easy:
 
 .. code-block:: sh
 
-    $ pip install git+git://github.com/scolby33/folderhash.git
+    $ pip install folderhash
     
 :code:`folderhash` supports only Python 3.6 or later.
 
