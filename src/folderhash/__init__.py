@@ -1,5 +1,5 @@
 """Compare folder contents via hash."""
-__version__ = '1.0.1'
+__version__ = '1.0.2-dev'
 
 __title__ = 'folderhash'
 # keep the __description__ synchronized with the module docstring
