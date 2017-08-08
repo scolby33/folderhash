@@ -79,10 +79,10 @@ def hash_file(path, hash_func):
     return digest
 
 
-def normalize_paths(input):
-    prefix = os.path.commonpath(input.keys())
+def normalize_paths(hashes_dict):
+    prefix = os.path.commonpath(hashes_dict.keys())
     prefix_len = len(prefix) + 1
-    normalized = {k[prefix_len:]: v for k, v in input.items()}
+    normalized = {k[prefix_len:]: v for k, v in hashes_dict.items()}
     return prefix, normalized
 
 
@@ -148,7 +148,7 @@ def main():
             hash_func = getattr(hashlib, args['-s'])
         except AttributeError:
             hash_func = hashlib.sha3_256
-            logger.warn(
+            logger.warning(
                 f'Hash function {args["-s"]} is not available. Defaulting to sha3_256'
             )
 
@@ -164,12 +164,22 @@ def main():
         with open(args['-a'], 'r') as f:
             output['a'] = dict(
                 reversed(line.strip().split(None, 1)) for line in f)
+            if not output['a']:
+                logger.error(f'Empty hash file provided: {args["-a"]}')
+                return 1
         with open(args['-b'], 'r') as f:
             output['b'] = dict(
                 reversed(line.strip().split(None, 1)) for line in f)
+            if not output['b']:
+                logger.error(f'Empty hash file provided: {args["-b"]}')
+                return 1
 
     a_prefix, a_normalized = normalize_paths(output['a'])
+    a_prefix = args['<dir_a>'] if args['<dir_a>'] else a_prefix
+
     b_prefix, b_normalized = normalize_paths(output['b'])
+    b_prefix = args['<dir_b>'] if args['<dir_b>'] else b_prefix
+
     bad, a_missing, b_missing = compare_hashes(a_normalized, b_normalized)
 
     dirty = False  # this feels hacky, but I can't think of a better way...
