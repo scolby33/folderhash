@@ -12,7 +12,7 @@ META_PATH = os.path.join('src', 'folderhash', '__init__.py')
 KEYWORDS = []
 # complete classifier list: http://pypi.python.org/pypi?%3Aaction=list_classifiers
 CLASSIFIERS = [
-    'Development Status :: 4 - Beta',
+    'Development Status :: 5 - Production/Stable',
     'Environment :: Console',
     'Framework :: AsyncIO',
     'Intended Audience :: Developers',
