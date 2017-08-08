@@ -164,9 +164,15 @@ def main():
         with open(args['-a'], 'r') as f:
             output['a'] = dict(
                 reversed(line.strip().split(None, 1)) for line in f)
+            if not output['a']:
+                logger.error(f'Empty hash file provided: {args["-a"]}')
+                return 1
         with open(args['-b'], 'r') as f:
             output['b'] = dict(
                 reversed(line.strip().split(None, 1)) for line in f)
+            if not output['b']:
+                logger.error(f'Empty hash file provided: {args["-b"]}')
+                return 1
 
     a_prefix, a_normalized = normalize_paths(output['a'])
     b_prefix, b_normalized = normalize_paths(output['b'])
